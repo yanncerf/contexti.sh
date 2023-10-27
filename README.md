@@ -1,5 +1,5 @@
 # Contexti.sh
-`Pronounced like "context-ish" as it's a very unfancy and hacky way to carry out a very superficial task`
+`Pronounced "context-ish" as it's a very unfancy and hacky way to carry out a very superficial task`
 # Table de Matières
 
 - [Installation](#installation)
@@ -11,7 +11,7 @@
   - [Generaly](#generaly)
   - [Varia](#varia)
 
-*contexti.sh* is a simple script designed to count and provide percentages of references by decade, half-century, and century in academic documents. 
+*contexti.sh* is a simple shell script designed to count and provide percentages of in-text APA citation, grouping them by decades, half-centuries, and centuries. 
 
 The idea for the script came when I had the "feeling" an article was citing rather outdated literature. I couldn't be bothered to count it and sort it by hand, yet still wanted to make sure it wasn't just an impression.
 
