@@ -15,7 +15,7 @@
 
 The idea for the script came when I had the "feeling" an article was citing rather outdated literature. I couldn't be bothered to count it and sort it by hand, yet still wanted to make sure it wasn't just an impression.
 
-Expanded upon it could be a fun tool to gather light data on academic journals, beeing in bash it's pretty fast even on heavy and long documents, comparing between different articles from the same author or some other way I didn't think of. Be wary thought it's really not that accurate. See [the main shortcomings of this script](##Shortcomings)
+Expanded upon, it could be a fun tool to gather light data on academic journals. Beeing in bash it's pretty fast even on heavy and long documents. Comparing between different articles from the same author is another usecas and surely there are some other way to use it that I didn't think of. Be wary thought it's really not a surefire way to get an accurate reading of _all_ the references in given document. See [the main shortcomings of this script](##Shortcomings)
 ## Installation
 Contexti.sh is a bash script and should work on Linux and macOS systems with the required tools (pdftotext, odt2txt, docx2txt). 
 ### Linux and macOS
@@ -148,7 +148,7 @@ rm "$text_file"
 
 This line removes the temporary text file created during the script's execution.
 ## Example Output
-Here's an example of what you can expect in the script output, this is for an article of mine that you can find [here](https://anthropological-notebooks.zrc-sazu.si/Notebooks/article/view/502/397)
+Here's an example of what you can expect as output, this is when I ran it on an article of mine that you can find [here](https://anthropological-notebooks.zrc-sazu.si/Notebooks/article/view/502/397)
 
 ```
 Total References: 52
@@ -168,7 +168,8 @@ Percentage Counts by Centuries:
 2000: 50 references (96.15%)
 ```
 
-The total number of references in the bibliography of this article is 32. The script picked up 32 occurences of in-text citation of those authors, and the remaining 20 times I've cited an author 2 or more. Written in 2021 and focused on David Graeber's work (who sadly passed away in 2020) I think the statistics seem to be doing justice to the opech-ness of the article. Comparing with a [report](https://arodes.hes-so.ch/record/12132?ln=fr) Ossipow L., Counilh A.-L., myself ,Martenot A. & Renevier J. wrote, some interesting pattern emerges:  
+The total number of references in the bibliography of this article is 32. The script picked up 52: 32 occurences of in-text citation of those authors, and the remaining 20 times are for when I've cited an author more than once. Written in 2021 and focused on David Graeber's work (who sadly passed away in 2020) I think the statistics seem to reflect the conditions and constraints of the article in terms of it's "uptodate-ness". 
+Comparing with a [report](https://arodes.hes-so.ch/record/12132?ln=fr) Ossipow L., Counilh A.-L., myself ,Martenot A. & Renevier J. wrote, some interesting pattern emerges:  
 
 ```
 Total References: 173
@@ -190,7 +191,8 @@ Percentage Counts by Centuries:
 2000: 171 references (98.84%)
 ```
 
-1490, 15 century?
+1490, 15th century?
+
 >note 69, page 66 Les jeunes du XVe siècle étaient aussi mal aimé.es : « Certains se font mendiants à l’âge où, jeune et fort, et en pleine santé on pourrait travailler : pourquoi se fatiguer [\…]. Tous les faux estropiés et gibier de potence qui rôdent dans les foires lui font joyeuse escorte. [\…] L’autre pendant le jour traîne sur des béquilles, mais quand il se voit seul, il trotte allégrement » (**Brant 1494**, cité par Fulconis et Kikuchi 2017)
 
 The contrast between the two output is stark, the script seems to do the job. it has it's shortcomings though.
@@ -202,7 +204,7 @@ Contexti.sh uses a [monster](https://www.ex-parrot.com/~pdw/Mail-RFC822-Address.
 references=$(grep -o -P '\b(?:[A-Z][A-Za-z'"'"'`-]+)(?:,? (?:and |& )?(?:[A-Z][A-Za-z'"'"'`-]+|(?:et al.?)))*(?:,? *(?:[0-9]{4}(?:, p\.? [0-9]+)?)(?:.*)?)' "$text_file"
 ```
 
-It counts in-texts references, taking into account (it's a bit hit and miss though, and there are edge cases) permutations on the APA (Author, YYYY) like:
+It's built to counts in-texts references, taking into account (it's a bit hit and miss though, and there are edge cases) permutations on the APA citation format (Author, YYYY), just like:
 
 >(AuthorA, YYYY ; AuthorB, YYYY: xx)
 (Author, YYYY:xx)
@@ -214,16 +216,16 @@ AuthorA said eloquently (YYYY)
 
 So of you cite AuthorA (YYYY) two times, this will count as two occurrences.
 
-While this command does a reasonably good job of identifying references, there may still be some edge cases or unconventional formats it may not capture accurately due to the inherent complexity and variability of reference styles in texts.You should review the output carefully and cross-verify the results if you relie on this script to actually objectify the "up-to-dateness" of a given paper.
+While this command does a reasonably good job of identifying references, there may still be some edge cases or unconventional formats it may not capture accurately due to the inherent complexity and variability of reference styles in texts.You should review the output carefully and cross-verify the results if you relie on this script to actually objectify the "uptodate-ness" of a given paper.
 ### Varia
-If you look more closely the output given as an example, and the source article, you'll see that the 1900's reference come from moments where I cite Orwell's famous Down and Out that came out in 1933.
+If you look more closely the output given as in the first example, and the source article, you'll see that the 1900's reference come from moments where I cite Orwell's famous Down and Out that came out in 1933.
 
-As an example of unexpected but welcome findings, I've been able to find (yet another) typo, puzzled that I had so much 1900' references in this article :
+As an example of unexpected but welcome findings I've been able to find (yet another) typo: I went digging in the article, puzzled that I had so much 1900' references in this article, and sure enough :
 
 >In-text: (Orwell, **193*3***)
 >In bibliography: Orwell, G. (2013 [**193*2***]). Down and out in Paris and London. Penguin Books.
 
-There is surely a lot more problems with the script, but I can't be bothered to tinker with it more.
+There is a lot more problems with the script, but it's a simple tool, that I won't use too much, so I really can't bring myself to to tinker with it more.
 
 The script, and parts of this readme.md was written with the help of OpenAI's ChatGPT. At first I tried something in python, but it was over-complicated for the task at hand, and Unix tools are rad so Unix it is.
 
