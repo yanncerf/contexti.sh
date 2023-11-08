@@ -13,9 +13,9 @@
 
 *contexti.sh* is a simple shell script designed to count and provide percentages of in-text APA citation, grouping them by decades, half-centuries, and centuries. 
 
-The idea for the script came when I had the "feeling" an article was citing rather outdated literature. I couldn't be bothered to count it and sort it by hand, yet still wanted to make sure it wasn't just an impression.
+The onset for this script came when I had the "feeling" an article was citing rather outdated literature. I couldn't be bothered to count it and sort it by hand, yet still wanted to make sure it wasn't just an impression.
 
-Expanded upon, it could be a fun tool to gather light data on academic journals. Beeing in bash it's pretty fast even on heavy and long documents. Comparing between different articles from the same author is another usecas and surely there are some other way to use it that I didn't think of. Be wary thought it's really not a surefire way to get an accurate reading of _all_ the references in given document. See [the main shortcomings of this script](##Shortcomings)
+It's mostly a fun tool to gather light data on academic journals. Beeing in bash it's pretty fast even on heavy and long documents. Comparing between different articles from the same author is another usecase and surely there are some other way to use it that I didn't think of. Be wary thought it's really not a surefire way to get an accurate reading of _all_ the references in given document. See [the main shortcomings of this script](##Shortcomings)
 ## Installation
 Contexti.sh is a bash script and should work on Linux and macOS systems with the required tools (pdftotext, odt2txt, docx2txt). 
 ### Linux and macOS
@@ -168,7 +168,7 @@ Percentage Counts by Centuries:
 2000: 50 references (96.15%)
 ```
 
-The total number of references in the bibliography of this article is 32. The script picked up 52: 32 occurences of in-text citation of those authors, and the remaining 20 times are for when I've cited an author more than once. Written in 2021 and focused on David Graeber's work (who sadly passed away in 2020) I think the statistics seem to reflect the conditions and constraints of the article in terms of it's "uptodate-ness". 
+The total number of references in the bibliography of this article is 32. The script picked up 52. 32 occurences of in-text citation, and the remaining 20 times are for when I've cited an author more than once. Written in 2021 and focused on David Graeber's work (who sadly passed away in 2020) The statistics reflect, somewhat, the conditions and constraints of this article in terms of it's "uptodate-ness". 
 Comparing with a [report](https://arodes.hes-so.ch/record/12132?ln=fr) Ossipow L., Counilh A.-L., myself ,Martenot A. & Renevier J. wrote, some interesting pattern emerges:  
 
 ```
@@ -191,11 +191,16 @@ Percentage Counts by Centuries:
 2000: 171 references (98.84%)
 ```
 
+Loads more recent (2020's) references than in the other example, this document beeing a report on a political matter, it seems to make sense.
+
+Also:
 1490, 15th century?
 
 >note 69, page 66 Les jeunes du XVe siècle étaient aussi mal aimé.es : « Certains se font mendiants à l’âge où, jeune et fort, et en pleine santé on pourrait travailler : pourquoi se fatiguer [\…]. Tous les faux estropiés et gibier de potence qui rôdent dans les foires lui font joyeuse escorte. [\…] L’autre pendant le jour traîne sur des béquilles, mais quand il se voit seul, il trotte allégrement » (**Brant 1494**, cité par Fulconis et Kikuchi 2017)
 
-The contrast between the two output is stark, the script seems to do the job. it has it's shortcomings though.
+The contrast between the two output is stark, the script seems to do the job. 
+
+It has it's shortcomings though.
 ## Shortcomings
 ### Generalities
 Contexti.sh uses a [monster](https://www.ex-parrot.com/~pdw/Mail-RFC822-Address.html?ref=blog.codinghorror.com) of a regex (see below) to identify references, but it may also count some non-references or bibliographic references.
@@ -218,9 +223,7 @@ So of you cite AuthorA (YYYY) two times, this will count as two occurrences.
 
 While this command does a reasonably good job of identifying references, there may still be some edge cases or unconventional formats it may not capture accurately due to the inherent complexity and variability of reference styles in texts.You should review the output carefully and cross-verify the results if you relie on this script to actually objectify the "uptodate-ness" of a given paper.
 ### Varia
-If you look more closely the output given as in the first example, and the source article, you'll see that the 1900's reference come from moments where I cite Orwell's famous Down and Out that came out in 1933.
-
-As an example of unexpected but welcome findings I've been able to find (yet another) typo: I went digging in the article, puzzled that I had so much 1900' references in this article, and sure enough :
+If you look more closely the output given in the first example, and the source article, you'll see that the 1900's reference correspond with moments where I cite Orwell's famous Down and Out that came out in 1933. As an example of unexpected but welcome findings, I've been able to locate (yet another) typo. I went digging in the article, puzzled that there was so much 1900' references, and sure enough :
 
 >In-text: (Orwell, **193*3***)
 >In bibliography: Orwell, G. (2013 [**193*2***]). Down and out in Paris and London. Penguin Books.
